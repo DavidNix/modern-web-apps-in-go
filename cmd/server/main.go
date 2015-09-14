@@ -1,7 +1,7 @@
 package main
 
-import "modern-web-apps-in-go/httpd"
+import "modern-web-apps-in-go/server"
 
 func main() {
-	httpd.Run()
+	server.Run()
 }

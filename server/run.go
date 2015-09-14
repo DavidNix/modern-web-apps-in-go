@@ -1,7 +1,8 @@
-package httpd
+package server
 
 import (
 	"log"
+	"modern-web-apps-in-go/server/router"
 	"net/http"
 	"os"
 )
@@ -11,7 +12,8 @@ func Run() {
 	if port == "" {
 		port = "8888"
 	}
-	// http.Handle("/", router.New())
+
+	http.Handle("/", router.New(Routes()))
 	log.Println("http: Listening on port", port)
-	http.ListenAndServe(":"+port, nil)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
