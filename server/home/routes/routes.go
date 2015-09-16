@@ -10,6 +10,9 @@ func Routes() router.Routes {
 		{
 			"home_root",
 			"GET", "/", home.Hello(),
+		}, {
+			"home_goodbye",
+			"GET", "/goodbye", home.Goodbye(),
 		},
 	}
 }

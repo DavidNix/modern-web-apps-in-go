@@ -7,3 +7,9 @@ func Hello() http.Handler {
 		w.Write([]byte("Hello, Gophers!"))
 	})
 }
+
+func Goodbye() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("See ya later, Gophers!"))
+	})
+}
