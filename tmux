@@ -10,19 +10,17 @@ function sourceDevEnv {
 if ! tmux ls | grep -q "$session"; then
 	tmux new-session -d -s $session
 
-	tmux rename-window vim
-	tmux split-window -v
-
 	sourceDevEnv $session:1.1
 	tmux send-keys -t $session:1.1 "vim" C-m
 
-	sourceDevEnv $session:1.2
-	tmux resize-pane -t $session:1.2 -D 20
+    tmux split-window -h
+    tmux send-keys -t $session:1.2 "curl -i localhost:8888"
 
-	tmux new-window -n "convey"
-	sourceDevEnv $session:2
-	tmux send-keys -t $session:2 "goconvey" C-m
-	open http://localhost:8080
+	tmux split-window -v
+
+	sourceDevEnv $session:1.3
+	tmux resize-pane -t $session:1.3 -D 20
+    tmux send-keys -t $session:1.3 "go run cmd/server/main.go" C-m
 fi
 
 tmux select-window -t $session:1
